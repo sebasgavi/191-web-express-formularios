@@ -17,8 +17,10 @@ app.get('/', function(request, response){
 });
 
 app.post('/login', function(request, response){
+    // crear un archivo con la información del usuario
     console.log(request.body);
-    response.send('hola');
+    // redireccionar a otra página
+    response.redirect('/bienvenida');
 });
 
 app.listen(3000);
