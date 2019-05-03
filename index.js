@@ -1,6 +1,30 @@
 var express = require('express');
 var exphbs = require('express-handlebars');
 
+const MongoClient = require('mongodb').MongoClient;
+const assert = require('assert');
+
+// Connection URL
+const url = 'mongodb://localhost:27017';
+
+// Database Name
+const dbName = 'tienda';
+
+// Create a new MongoClient
+const client = new MongoClient(url);
+
+var db = null;
+
+// Use connect method to connect to the Server
+client.connect(function(err) {
+    assert.equal(null, err);
+    
+    db = client.db(dbName);
+    
+    //client.close();
+});
+
+
 var app = express();
 
 app.use(express.static('public'));
@@ -14,6 +38,21 @@ app.get('/', function(request, response){
         titulo: 'Página principal',
     };
     response.render('home', contexto);
+});
+
+app.get('/tienda', function(request, response){
+    
+    var collection = db.collection('productos');
+    // Find some documents
+    collection.find({}).toArray(function(err, docs) {
+        assert.equal(err, null);
+        
+        var contexto = {
+            productos: docs
+        };
+        response.render('tienda', contexto);
+    });
+    
 });
 
 app.post('/login', function(request, response){
