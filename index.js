@@ -42,11 +42,14 @@ app.get('/', function(request, response){
 
 app.get('/tienda/:categoria?', function(request, response){
     
-    console.log(request.params.categoria);
+    console.log(request.query.precio);
 
     var query = {};
     if(request.params.categoria){
         query.categoria = request.params.categoria;
+    }
+    if(request.query.precio){
+        query.precio = { $lte: request.query.precio };
     }
 
     var collection = db.collection('productos');
@@ -58,6 +61,7 @@ app.get('/tienda/:categoria?', function(request, response){
         var contexto = {
             productos: docs,
             categoria: request.params.categoria,
+            precio: request.query.precio,
             esDiseno: request.params.categoria == "Diseño",
             esArquitectura: request.params.categoria == "Arquitectura",
         };

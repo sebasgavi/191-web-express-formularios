@@ -18,7 +18,7 @@
 
     {{#if esDiseno}}
         <label>Ingresa el rango de precio</label>
-        <input class="input-rango" type="range" min="10000" max="30000">
+        <input value="{{precio}}" class="input-rango" type="range" min="10000" max="30000">
     {{/if}}
 
     {{#if esArquitectura}}
@@ -40,6 +40,7 @@
         var rango = document.querySelector('.input-rango');
         function buscarPorPrecio(){
             console.log(rango.value);
+            location.href = '/tienda/Diseño?precio=' + rango.value;
         }
         rango.addEventListener('change', buscarPorPrecio);
     </script>
