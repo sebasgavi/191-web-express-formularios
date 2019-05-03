@@ -10,9 +10,20 @@
 
     <h1>Tienda</h1>
 
+    <h2>Filtros</h2>
+    <ul>
+        <li><a href="/tienda/Diseño">Diseño</a></li>
+        <li><a href="/tienda/Arquitectura">Arquitectura</a></li>
+    </ul>
+
     <ul>
         {{#each productos}}
-            <li>{{nombre}}</li>
+            <li>
+                <img src="{{imagen}}" width="200px">
+                <h3>{{nombre}}</h3>
+                <p>{{precio}}</p>
+                <p>{{categoria}}</p>
+            </li>
         {{/each}}
     </ul>
     

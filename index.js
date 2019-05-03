@@ -40,11 +40,14 @@ app.get('/', function(request, response){
     response.render('home', contexto);
 });
 
-app.get('/tienda', function(request, response){
+app.get('/tienda/:categoria', function(request, response){
     
+    console.log(request.params.categoria);
+
     var collection = db.collection('productos');
     // Find some documents
-    collection.find({}).toArray(function(err, docs) {
+    collection.find({ categoria: request.params.categoria })
+        .toArray(function(err, docs) {
         assert.equal(err, null);
         
         var contexto = {
