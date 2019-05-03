@@ -40,18 +40,26 @@ app.get('/', function(request, response){
     response.render('home', contexto);
 });
 
-app.get('/tienda/:categoria', function(request, response){
+app.get('/tienda/:categoria?', function(request, response){
     
     console.log(request.params.categoria);
 
+    var query = {};
+    if(request.params.categoria){
+        query.categoria = request.params.categoria;
+    }
+
     var collection = db.collection('productos');
     // Find some documents
-    collection.find({ categoria: request.params.categoria })
+    collection.find(query)
         .toArray(function(err, docs) {
         assert.equal(err, null);
         
         var contexto = {
-            productos: docs
+            productos: docs,
+            categoria: request.params.categoria,
+            esDiseno: request.params.categoria == "Diseño",
+            esArquitectura: request.params.categoria == "Arquitectura",
         };
         response.render('tienda', contexto);
     });

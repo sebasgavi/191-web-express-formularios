@@ -16,6 +16,15 @@
         <li><a href="/tienda/Arquitectura">Arquitectura</a></li>
     </ul>
 
+    {{#if esDiseno}}
+        <label>Ingresa el rango de precio</label>
+        <input class="input-rango" type="range" min="10000" max="30000">
+    {{/if}}
+
+    {{#if esArquitectura}}
+        Categoría Arquitectura
+    {{/if}}
+
     <ul>
         {{#each productos}}
             <li>
@@ -26,6 +35,14 @@
             </li>
         {{/each}}
     </ul>
+
+    <script>
+        var rango = document.querySelector('.input-rango');
+        function buscarPorPrecio(){
+            console.log(rango.value);
+        }
+        rango.addEventListener('change', buscarPorPrecio);
+    </script>
     
 </body>
 </html>
