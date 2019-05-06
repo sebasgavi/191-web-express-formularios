@@ -15,7 +15,18 @@ function paginaCargada(){
     }
 
     var carritoNum = document.querySelector('.carrito__num');
-    carritoNum.innerHTML = listaProductos.length;
+    var listaCarrito = document.querySelector('.carrito-desplegado__lista');
+
+    function actualizarCarrito(){
+        carritoNum.innerHTML = listaProductos.length;
+    
+        listaCarrito.innerHTML = '';
+        listaProductos.forEach(function(producto){
+            listaCarrito.innerHTML += '<img src="' + producto.imagen + '" width="50">' + producto.nombre;
+        });
+    }
+
+    actualizarCarrito();
 
     var botones = document.querySelectorAll('.producto__carrito');
     function recorrerBotones(boton){
@@ -31,7 +42,7 @@ function paginaCargada(){
             };
             
             listaProductos.push(producto);
-            carritoNum.innerHTML = listaProductos.length;
+            actualizarCarrito();
             localStorage.setItem('listaProductos', JSON.stringify(listaProductos));
         }
         boton.addEventListener('click', agregarAlCarrito);
