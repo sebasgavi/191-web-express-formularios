@@ -70,6 +70,20 @@ app.get('/tienda/:categoria?', function(request, response){
     
 });
 
+app.get('/tienda/producto/:nombre', function(req, res){
+
+    var collection = db.collection('productos');
+    collection.find({ nombre: req.params.nombre })
+        .toArray(function(err, docs){
+            console.log(docs);
+
+            var contexto = {
+                producto: docs[0]
+            };
+            res.render('producto', contexto);
+        });
+});
+
 app.post('/login', function(request, response){
     // crear un archivo con la información del usuario
     console.log(request.body);

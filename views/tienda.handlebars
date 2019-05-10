@@ -10,6 +10,17 @@
 
     <h1>Tienda</h1>
 
+    <div class="carrito">
+        <p>Carrito</p>
+        <span class="carrito__num"></span>
+    </div>
+
+    <div class="carrito-desplegado">
+        <h3>Carrito</h3>
+        <ul class="carrito-desplegado__lista"></ul>
+    </div>
+
+
     <h2>Filtros</h2>
     <ul>
         <li><a href="/tienda/Diseño">Diseño</a></li>
@@ -27,23 +38,19 @@
 
     <ul>
         {{#each productos}}
-            <li>
-                <img src="{{imagen}}" width="200px">
-                <h3>{{nombre}}</h3>
-                <p>{{precio}}</p>
-                <p>{{categoria}}</p>
+            <li class="producto">
+                <a href="/tienda/producto/{{nombre}}">
+                    <img class="producto__imagen" src="{{imagen}}" width="200px">
+                    <h3 class="producto__nombre">{{nombre}}</h3>
+                    <p class="producto__precio">{{precio}}</p>
+                    <p>{{categoria}}</p>
+                </a>
+                <button class="producto__carrito">Agregar al carrito</button>
             </li>
         {{/each}}
     </ul>
 
-    <script>
-        var rango = document.querySelector('.input-rango');
-        function buscarPorPrecio(){
-            console.log(rango.value);
-            location.href = '/tienda/Diseño?precio=' + rango.value;
-        }
-        rango.addEventListener('change', buscarPorPrecio);
-    </script>
+    <script src="/scripts/tienda.js"></script>
     
 </body>
 </html>

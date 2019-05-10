@@ -1,0 +1,41 @@
+[
+    {
+        "id": 1,
+        "nombre": "Camiseta X",
+        "descripcion": "lorem",
+        "precio": 10000,
+        "categoria": "ropa",
+        "imagenes": ["imagen1.jpg", "imagen2.jpg"],
+        "colores": ["rojo", "blanco"],
+        "opciones": [
+            {
+                "nombre": "rojo",
+                "imagenes": ["", ""]
+            },
+            {
+                "nombre": "blanco",
+                "imagenes": []
+            },
+
+            {
+                "nombre": "pobre",
+                "dias": 3,
+                "incluye": ["desayuno"],
+                "tours": null
+            },
+
+            {
+                "nombre": "pudiente",
+                "dias": 15,
+                "incluye": ["desayuno", "almuerzo", "cena", "vinito", "spa"],
+                "tours": [""]
+            }
+        ]
+    },
+
+    {
+
+    }
+
+    
+]
