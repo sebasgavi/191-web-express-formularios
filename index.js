@@ -73,8 +73,25 @@ app.get('/tienda/:categoria?', function(request, response){
 app.post('/login', function(request, response){
     // crear un archivo con la información del usuario
     console.log(request.body);
-    // redireccionar a otra página
-    response.redirect('/bienvenida');
+
+    var pedido = {
+        correo: request.body.correo,
+        contrasena: request.body.contrasena,
+        fecha: new Date(),
+        estado: 'nuevo',
+    };
+
+    var collection = db.collection('pedidos');
+    collection.insertOne(pedido, function(err){
+        assert.equal(err, null);
+
+        console.log('pedido guardado');
+    });
+    var contexto = {
+        titulo: 'Página principal',
+        mensaje: 'pedido guardado',
+    };
+    response.render('home', contexto);
 });
 
 app.listen(3000);
