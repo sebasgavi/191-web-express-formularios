@@ -102,11 +102,7 @@ app.post('/login', function(request, response){
 
         console.log('pedido guardado');
     });
-    var contexto = {
-        titulo: 'Página principal',
-        mensaje: 'pedido guardado',
-    };
-    response.redirect('/');
+    response.redirect('/checkout');
 });
 
 app.listen(3000);
