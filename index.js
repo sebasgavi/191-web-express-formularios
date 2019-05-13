@@ -93,6 +93,7 @@ app.post('/login', function(request, response){
         contrasena: request.body.contrasena,
         fecha: new Date(),
         estado: 'nuevo',
+        productos: JSON.parse(request.body.productos)
     };
 
     var collection = db.collection('pedidos');
@@ -105,7 +106,7 @@ app.post('/login', function(request, response){
         titulo: 'Página principal',
         mensaje: 'pedido guardado',
     };
-    response.render('home', contexto);
+    response.redirect('/');
 });
 
 app.listen(3000);
